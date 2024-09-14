@@ -1,7 +1,7 @@
 import 'dart:io';
 
 //Agenda
-List<String> contactos = [];
+List<Contacto> contactos = [];
 
 class Contacto {
   //Propiedades
@@ -21,12 +21,39 @@ class Contacto {
 void opciones() {
   print('CONTACTOS');
   print('1. Mis Contactos');
-  print('2. Agregar');
-  print('3. Eliminar');
-  print('4. Salir');
+  print('2. Buscar Contactos');
+  print('3. Agregar Contactos');
+  print('4. Eliminar Contactos');
+  print('5. Salir');
 }
 
 //Funciones
+void mostrarContactos() {
+  if (contactos.isEmpty) {
+    print('No hay contactos.');
+  } else {
+    print('CONTACTOS');
+    // Usar map para transformar la lista de contactos a una lista de cadenas formateadas
+    contactos.asMap().forEach((index, contacto) {
+      print('${index + 1}. ${contacto.toString()}');
+    });
+  }
+}
+
+void buscarContacto() {
+  print('Ingrese nombre del contacto que desea buscar');
+  String nombreBuscado = stdin.readLineSync()!;
+
+  try {
+    Contacto contactoEncontrado = contactos.firstWhere((contacto) =>
+        contacto.nombre.toLowerCase() == nombreBuscado.toLowerCase());
+
+    print('Contacto encontrado: ${contactoEncontrado.toString()}');
+  } catch (e) {
+    print('No se encontró ningún contacto con el nombre $nombreBuscado');
+  }
+}
+
 void agregarContactos() {
   print('Ingrese nombre del contacto');
   String nombrE = stdin.readLineSync()!;
@@ -35,19 +62,7 @@ void agregarContactos() {
   String numerO = stdin.readLineSync()!;
 
   Contacto contacto = Contacto('$nombrE', numerO);
-  contactos.add(contacto.toString());
-}
-
-void mostrarContactos() {
-  if (contactos.isEmpty) {
-    print('No hay contactos.');
-  } else {
-    print('CONTACTOS');
-    print(contactos);
-    for (int i = 0; i < contactos.length; i++) {
-      print('${i + 1}. ${contactos[i]}');
-    }
-  }
+  contactos.add(contacto);
 }
 
 void eliminarContacto() {
@@ -81,12 +96,15 @@ void main() {
         mostrarContactos();
         break;
       case 2:
-        agregarContactos();
+        buscarContacto();
         break;
       case 3:
-        eliminarContacto();
+        agregarContactos();
         break;
       case 4:
+        eliminarContacto();
+        break;
+      case 5:
         continuar = false;
         print('Nos vemos...');
         break;
