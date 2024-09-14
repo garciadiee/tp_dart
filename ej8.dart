@@ -75,22 +75,4 @@ void main() {
     print('3. Retirar');
     print('4. Salir');
   }
-
-
-// /*
-// void main() {
-//   //Cuenta bancaria
-//   Cuenta cuenta1 = Cuenta('Diego', 100000.50);
-
-//   //Mostramos
-//   cuenta1.mostrar();
-
-//   //Retirar mas del saldo
-//   cuenta1.retirar(205420.66);
-
-//   //Retirar un monto acorde al saldo
-//   cuenta1.retirar(50000.50);
-
-//   //Resumen
-//   cuenta1.mostrar();
-// }
+  

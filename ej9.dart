@@ -36,7 +36,6 @@ void marcarTarea() {
     print('No hay tareas que marcar');
     return;
   }
-
 //Mostramos
   mostrarTareas();
   print('Selecciona el numero de la tarea completada:');
